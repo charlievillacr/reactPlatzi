@@ -7,21 +7,40 @@ function cambiarNombre(nuevoNombre) {
   cambia = nuevoNombre
 }
 
+const getUserAll = new Promise(function(todoBien, todoMal) {
+  // llamar a un api
+  setTimeout(function() {
+    // luego de 3 segundos
+    todoBien('Se acabó el tiempo');
+  }, 5000)
+})
+
 const getUser = new Promise(function(todoBien, todoMal) {
   // llamar a un api
   setTimeout(function() {
     // luego de 3 segundos
-    todoMal('Se acabó el tiempo');
+    todoBien('Se acabó el tiempo');
   }, 3000)
 })
 
-getUser
-  .then(function() {
-    console.log('todo está bien en la vida')
-  })
-  .catch(function(message) {
-    console.log('todo mal :C')
-  })
+// getUser
+//   .then(function() {
+//     console.log('Todo está bien en la vida')
+//   })
+//   .catch(function(message) {
+//     console.log(message)
+//   })
+
+Promise.all([
+  getUser,
+  getUserAll,
+])
+.then(function(message) {
+  console.log(message)
+})
+.catch(function(message) {
+  console.log(message)
+})
 
 
 
